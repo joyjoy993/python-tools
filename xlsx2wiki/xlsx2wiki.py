@@ -11,10 +11,13 @@ with open('result.txt', 'w') as writefile:
 	header = False
 	for row in range(0, nrows):
 		data = sheet.row_values(row)
-		writefile.write('|' + '|'.join(data) + '|\n')
+		for i in range(len(data)):
+			if data[i] == u'':
+				data[i] = data[i].replace(u'', u' ')
+		writefile.write('|' + '|'.join(data) + ' |\n')
 		if header == False:
 			header = True
 			splitMark = ''
 			for i in range(0, ncols):
 				splitMark = splitMark + '| ------ '
-			writefile.write(splitMark + '|\n')
+			writefile.write(splitMark + ' |\n')
